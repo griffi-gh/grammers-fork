@@ -52,6 +52,7 @@ pub struct InitParams {
     pub system_version: String,
     pub app_version: String,
     pub system_lang_code: String,
+    pub lang_pack: String,
     pub lang_code: String,
     /// Should the client catch-up on updates sent to it while it was offline?
     ///
@@ -183,6 +184,7 @@ impl Default for InitParams {
             system_version: info.version().to_string(),
             app_version: env!("CARGO_PKG_VERSION").to_string(),
             system_lang_code,
+            lang_pack: String::new(),
             lang_code,
             catch_up: false,
             server_addr: None,

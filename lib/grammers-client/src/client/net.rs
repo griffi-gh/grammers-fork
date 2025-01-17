@@ -158,7 +158,7 @@ pub(crate) async fn connect_sender(
                 system_version: config.params.system_version.clone(),
                 app_version: config.params.app_version.clone(),
                 system_lang_code: config.params.system_lang_code.clone(),
-                lang_pack: "".into(),
+                lang_pack: config.params.lang_pack.clone(),
                 lang_code: config.params.lang_code.clone(),
                 proxy: None,
                 params: None,
