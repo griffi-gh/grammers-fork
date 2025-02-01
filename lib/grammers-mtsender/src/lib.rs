@@ -79,9 +79,10 @@ pub(crate) fn generate_random_id() -> i64 {
             .expect("system time is before epoch")
             .as_nanos() as i64;
 
-        LAST_ID
-            .compare_exchange(0, now, Ordering::SeqCst, Ordering::SeqCst)
-            .unwrap();
+        if let Err(e) = LAST_ID
+            .compare_exchange(0, now, Ordering::SeqCst, Ordering::SeqCst) {
+            debug!("ran into bug https://github.com/Lonami/grammers/issues/309: {e}")
+        }
     }
 
     LAST_ID.fetch_add(1, Ordering::SeqCst)
